@@ -1,0 +1,15 @@
+# Ignore Java compiled files
+*.class
+/build/
+/bin/
+/out/
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+*.iml
+.grade
+.kotlin
+
+# Ignore your private test files (if you want)
+src/test/java/com/yourname/App.java
