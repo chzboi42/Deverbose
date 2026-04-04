@@ -4,26 +4,28 @@
  */
 
 import com.chzboi42.deverbose.Console;
+import com.chzboi42.deverbose.Interpolator;
 import com.chzboi42.deverbose.Loops;
 import com.chzboi42.deverbose.units.Time;
 
 public class App {
     static int i = 0;
     static boolean reached5 = false;
-    
+
     public static void main(String[] args) {
 
-        Console.parallel(
-            () -> Loops.loop(10, () -> {
-                Console.println(Loops.i());
-                if (reached5) {Console.wait(Time.Milliseconds.of(10)); reached5 = false;}
-            }),
-            () -> Console.sequence(
-                () -> Console.waitUntil(() -> Loops.i() >= 5),
-                () -> {reached5 = true;},
-                () -> Console.write("Finished 5")
-            )
-        );
+        Interpolator data = new Interpolator();
+
+        data.put(1,19);
+        data.put(2,23);
+        data.put(3,43);
+        data.put(4,59);
+        data.put(6,95);
+
+//        data.put(1,10);
+//        data.put(3,30);
+
+        System.out.println(data.get(69));
 
     }
 }
