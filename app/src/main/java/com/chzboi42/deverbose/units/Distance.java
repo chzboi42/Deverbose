@@ -74,6 +74,12 @@ public class Distance {
         }
     }
 
+    public static class Furlongs {
+        public static Distance of(double value) {
+            return Miles.of(1).dividedBy(8);
+        }
+    }
+
     public static class NauticalMiles {
         public static Distance of(double value) {
             return new Distance(value * 1852);
@@ -128,6 +134,10 @@ public class Distance {
 
     public double inMiles() {
         return this.metres / 1609.344;
+    }
+
+    public double inFurlongs() {
+        return inMiles() / 8;
     }
 
     public double inNauticalMiles() {

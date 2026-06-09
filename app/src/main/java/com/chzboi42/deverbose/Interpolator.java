@@ -14,11 +14,10 @@ public class Interpolator {
     }
 
     public final double get(double x) {
-        toArray();
-        return Maths.lerp2d(values, x);
+        return Maths.lerp2d(toArray(), x);
     }
 
-    private void toArray() {
+    private double[][] toArray() {
         values = new double[storage.size()][2];
         int i = 0;
         for (Map.Entry<Double, Double> entry : storage.entrySet()) {
@@ -26,5 +25,6 @@ public class Interpolator {
             values[i][1] = entry.getValue();
             i++;
         }
+        return values;
     }
 }

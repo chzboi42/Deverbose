@@ -14,6 +14,7 @@ import com.chzboi42.deverbose.units.Time;
  * @version 0.1
  */
 public class Console {
+    private Console() {}
 
     private static final ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
@@ -53,6 +54,14 @@ public class Console {
         return sb.toString();
     }
 
+    public static String csvToTsv(String csv) {
+        return csv.replace(',', '\t');
+    }
+
+    public static String tsvToCsv(String tsv) {
+        return tsv.replace('\t', ',');
+    }
+
     public static void parallelInstant(Runnable... tasks) {
         for (Runnable task : tasks) {
             executor.submit(task);
@@ -64,7 +73,9 @@ public class Console {
         parallelInstant(tasks);
         try {
             executor.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
-        } catch (InterruptedException e) {}
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     public static void sequence(Runnable... tasks) {

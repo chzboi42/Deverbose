@@ -13,3 +13,4 @@
 
 # Ignore your private test files (if you want)
 src/test/java/App.java
+src/main/java/com/chzboi42/deverbose/xml/Test.java

@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 
 public class Input {
+    private Input() {}
     private static final Scanner scanner = new Scanner(System.in);
     private static boolean newLine = false;
     private static final Input INSTANCE = new Input();

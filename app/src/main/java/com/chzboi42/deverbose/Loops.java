@@ -1,6 +1,7 @@
 package com.chzboi42.deverbose;
 
 public class Loops {
+    private Loops() {}
 
     private static int i;
 
@@ -24,6 +25,7 @@ public class Loops {
         } else {
             Console.println("Not a valid loop");
         }
+        i = 0;
     }
 
     public static void loop(int start, int end, int step, Runnable action) {
@@ -35,6 +37,6 @@ public class Loops {
     }
 
     public static void loop(int start, int end, Runnable action) {
-        forloop(start, end, 1, action);
+        forloop(start, end, start < end ? 1 : -1 , action);
     }
 }
