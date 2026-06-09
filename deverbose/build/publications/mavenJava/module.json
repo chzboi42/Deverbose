@@ -1,0 +1,76 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.chzboi42",
+    "module": "deverbose",
+    "version": "0.4.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.3.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "deverbose-0.4.0.jar",
+          "url": "deverbose-0.4.0.jar",
+          "size": 66118,
+          "sha512": "9a6b38d5488c4d1aa66f7033455e111982624c0f5004fdc8ad2f8be93046adff0b72123528265be3caac9fcfb62cafa0330ea0bf1ce76440ada7c4e06469a7e1",
+          "sha256": "cf2c513738c6cffae94e4ecc2c77ef7d38c1f7f064ba589fac8629e8df3fde53",
+          "sha1": "13a60a7fd53c8bd08b16ea64cc776320fe2f7fc7",
+          "md5": "887207641a244aa6eed462c47cb9b58a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.guava",
+          "module": "guava",
+          "version": {
+            "requires": "33.4.6-jre"
+          }
+        },
+        {
+          "group": "xom",
+          "module": "xom",
+          "version": {
+            "requires": "1.4.4"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "deverbose-0.4.0.jar",
+          "url": "deverbose-0.4.0.jar",
+          "size": 66118,
+          "sha512": "9a6b38d5488c4d1aa66f7033455e111982624c0f5004fdc8ad2f8be93046adff0b72123528265be3caac9fcfb62cafa0330ea0bf1ce76440ada7c4e06469a7e1",
+          "sha256": "cf2c513738c6cffae94e4ecc2c77ef7d38c1f7f064ba589fac8629e8df3fde53",
+          "sha1": "13a60a7fd53c8bd08b16ea64cc776320fe2f7fc7",
+          "md5": "887207641a244aa6eed462c47cb9b58a"
+        }
+      ]
+    }
+  ]
+}
