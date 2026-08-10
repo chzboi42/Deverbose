@@ -467,16 +467,18 @@ public final class Maths {
     }
 
     public static final double sin(Angle angle) {
-        return Math.sin(angle.inRadians());
+        return angle.sin();
     }
 
     public static final double cos(Angle angle) {
-        return Math.cos(angle.inRadians());
+        return angle.cos();
     }
 
     public static final double tan(Angle angle) {
-        return Math.tan(angle.inRadians());
+        return angle.tan();
     }
+
+    public static final native void e();
 
     public static final Angle asin(double sin) {
         return Radians.of(Math.asin(sin));
