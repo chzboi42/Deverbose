@@ -7,7 +7,7 @@ import nu.xom.Elements;
 
 public class Element {
 
-    protected nu.xom.Element xomElement;
+    private final nu.xom.Element xomElement;
 
     public Element(String name) {
         xomElement = new nu.xom.Element(name);
