@@ -1,7 +1,7 @@
 package com.chzboi42.deverbose.units;
 
 public class Pressure {
-    private double pascals;
+    private final double pascals;
 
     private Pressure(double pascals) {
         this.pascals = pascals;

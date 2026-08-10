@@ -4,7 +4,7 @@ public class Distance {
     public static final Distance AU = Kilometres.of(1.496e+8);
     private final double metres;
 
-    private Distance(double metres) {
+    Distance(double metres) {
         this.metres = metres;
     }
 
