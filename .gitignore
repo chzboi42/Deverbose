@@ -12,4 +12,3 @@
 .kotlin
 
 # Ignore your private test files (if you want)
-src/test/java/App.java

@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import com.chzboi42.deverbose.units.Angle;
-import com.chzboi42.deverbose.units.Angle.Radians;
+import com.chzboi42.deverbose.units2.Angle;
+import static com.chzboi42.deverbose.units2.Units.Radians;
 
 /**
  * Class for math-related stuff

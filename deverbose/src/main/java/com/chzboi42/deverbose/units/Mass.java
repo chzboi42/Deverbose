@@ -9,73 +9,73 @@ public class Mass {
 
     // --- Metric units ---
 
-    public static class Milligrams {
-        public static Mass of(double value) {
-            return new Mass(value / 1000);
+        public static class Milligrams {
+            public static Mass of(double value) {
+                return new Mass(value / 1000);
+            }
         }
-    }
 
-    public static class Centigrams {
-        public static Mass of(double value) {
-            return new Mass(value / 100);
+        public static class Centigrams {
+            public static Mass of(double value) {
+                return new Mass(value / 100);
+            }
         }
-    }
 
-    public static class Decigrams {
-        public static Mass of(double value) {
-            return new Mass(value / 10);
+        public static class Decigrams {
+            public static Mass of(double value) {
+                return new Mass(value / 10);
+            }
         }
-    }
 
-    public static class Grams {
-        public static Mass of(double value) {
-            return new Mass(value);
+        public static class Grams {
+            public static Mass of(double value) {
+                return new Mass(value);
+            }
         }
-    }
 
-    public static class Kilograms {
-        public static Mass of(double value) {
-            return new Mass(value * 1000);
+        public static class Kilograms {
+            public static Mass of(double value) {
+                return new Mass(value * 1000);
+            }
         }
-    }
 
-    public static class Tonnes {
-        public static Mass of(double value) {
-            return new Mass(value * 1_000_000);
+        public static class Tonnes {
+            public static Mass of(double value) {
+                return new Mass(value * 1_000_000);
+            }
         }
-    }
 
-    // --- Imperial units ---
+        // --- Imperial units ---
 
-    public static class Ounces {
-        public static Mass of(double value) {
-            return new Mass(value * 28.349523125);
+        public static class Ounces {
+            public static Mass of(double value) {
+                return new Mass(value * 28.349523125);
+            }
         }
-    }
 
-    public static class Pounds {
-        public static Mass of(double value) {
-            return new Mass(value * 453.59237);
+        public static class Pounds {
+            public static Mass of(double value) {
+                return new Mass(value * 453.59237);
+            }
         }
-    }
 
-    public static class Stones {
-        public static Mass of(double value) {
-            return new Mass(value * 6350.29318);
+        public static class Stones {
+            public static Mass of(double value) {
+                return new Mass(value * 6350.29318);
+            }
         }
-    }
 
-    public static class ShortTons { // US ton
-        public static Mass of(double value) {
-            return new Mass(value * 907_184.74);
+        public static class ShortTons { // US ton
+            public static Mass of(double value) {
+                return new Mass(value * 907_184.74);
+            }
         }
-    }
 
-    public static class LongTons { // UK ton
-        public static Mass of(double value) {
-            return new Mass(value * 1_016_046.9088);
+        public static class LongTons { // UK ton
+            public static Mass of(double value) {
+                return new Mass(value * 1_016_046.9088);
+            }
         }
-    }
 
     // --- Conversions (metric) ---
 
