@@ -6,6 +6,11 @@ public class MassUnit extends AbstractUnit<Mass> {
         super(scalar, Mass::new);
     }
 
+    @Override
+    protected MassUnit withScalar(double scalar) {
+        return new MassUnit(scalar);
+    }
+
     public DensityUnit per(VolumeUnit volume) {
         return new DensityUnit(this, volume);
     }

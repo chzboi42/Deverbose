@@ -28,7 +28,30 @@ public abstract class RateUnit<
     @Override
     public abstract Rate<A, B> of(double value);
 
+    @Override
+    protected RateUnit<A, B> withScalar(double scalar) {
+        // Adjust the numerator's scalar to reflect the new rate scalar
+        double newNumeratorScalar = scalar * denominatorUnit.convertToBase(1.0);
+        AbstractUnit<A> newNumerator = (AbstractUnit<A>) numeratorUnit.withScalar(newNumeratorScalar);
+
+        return new RateUnit<A, B>(
+            newNumerator, 
+            denominatorUnit, 
+            numeratorUnit.constructor, 
+            denominatorUnit.constructor
+        ) {
+            @Override
+            public Rate<A, B> of(double value) {
+                return new Rate<A, B>(
+                    convertToBase(value), 
+                    numeratorUnit.constructor, 
+                    denominatorUnit.constructor
+                ) {};
+            }
+        };
+    }
+
     public AbstractUnit<A> getNumeratorUnit() { return numeratorUnit; }
-    
+
     public AbstractUnit<B> getDenominatorUnit() { return denominatorUnit; }
 }

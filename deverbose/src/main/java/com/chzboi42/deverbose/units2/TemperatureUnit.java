@@ -8,6 +8,11 @@ public class TemperatureUnit extends AbstractUnit<Temperature> {
         super(scalar, Temperature::new);
     }
 
+    @Override
+    protected TemperatureUnit withScalar(double scalar) {
+        return new TemperatureUnit(scalar);
+    }
+
     TemperatureUnit(DoubleUnaryOperator toBase, DoubleUnaryOperator fromBase) {
         super(toBase, fromBase, Temperature::new);
     }

@@ -14,17 +14,17 @@ public final class Units {
     public static final AngleUnit Rotations = new AngleUnit(Math.TAU);
 
     public static final DistanceUnit Metres       = new DistanceUnit(1);
-    public static final DistanceUnit Picometres   = new DistanceUnit(0.000000000001);
-    public static final DistanceUnit Nanometres   = new DistanceUnit(0.000000001);
-    public static final DistanceUnit Micrometres  = new DistanceUnit(0.000001);
-    public static final DistanceUnit Millimetres  = new DistanceUnit(0.001);
-    public static final DistanceUnit Centimetres  = new DistanceUnit(0.01);
-    public static final DistanceUnit Decimetres   = new DistanceUnit(0.1);
+    public static final DistanceUnit Picometres   = milli(nano(Metres));
+    public static final DistanceUnit Nanometres   = nano(Metres);
+    public static final DistanceUnit Micrometres  = micro(Metres);
+    public static final DistanceUnit Millimetres  = milli(Metres);
+    public static final DistanceUnit Centimetres  = centi(Metres);
+    public static final DistanceUnit Decimetres   = deci(Metres);
     public static final DistanceUnit Meters       = Metres;
-    public static final DistanceUnit Decametres   = new DistanceUnit(10);
+    public static final DistanceUnit Decametres   = deca(Metres);
     public static final DistanceUnit Dekametres   = Decametres;
-    public static final DistanceUnit Hectometres  = new DistanceUnit(100);
-    public static final DistanceUnit Kilometres   = new DistanceUnit(1000);
+    public static final DistanceUnit Hectometres  = hecto(Metres);
+    public static final DistanceUnit Kilometres   = kilo(Metres);
     public static final DistanceUnit Inches       = new DistanceUnit(0.0254);
     public static final DistanceUnit Feet         = new DistanceUnit(0.3048);
     public static final DistanceUnit Yards        = new DistanceUnit(0.9144);
@@ -52,10 +52,10 @@ public final class Units {
     public static final ForceUnit Kiloponds   = new ForceUnit(9.80665);
 
     public static final MassUnit Grams      = new MassUnit(1.0);
-    public static final MassUnit Milligrams = new MassUnit(1.0 / 1000.0);
-    public static final MassUnit Centigrams = new MassUnit(1.0 / 100.0);
-    public static final MassUnit Decigrams  = new MassUnit(1.0 / 10.0);
-    public static final MassUnit Kilograms  = new MassUnit(1000.0);
+    public static final MassUnit Milligrams = milli(Grams);
+    public static final MassUnit Centigrams = centi(Grams);
+    public static final MassUnit Decigrams  = deci(Grams);
+    public static final MassUnit Kilograms  = kilo(Grams);
     public static final MassUnit Tonnes     = new MassUnit(1_000_000.0);
     public static final MassUnit Ounces     = new MassUnit(28.349523125);
     public static final MassUnit Pounds     = new MassUnit(453.59237);
@@ -82,9 +82,9 @@ public final class Units {
     public static final AreaUnit Acres            = new AreaUnit(4046.8564224);
 
     public static final VolumeUnit Litres            = new VolumeUnit(1.0);
-    public static final VolumeUnit Millilitres       = new VolumeUnit(1.0 / 1000.0);
-    public static final VolumeUnit Centilitres       = new VolumeUnit(1.0 / 100.0);
-    public static final VolumeUnit Decilitres        = new VolumeUnit(1.0 / 10.0);
+    public static final VolumeUnit Millilitres       = milli(Litres);
+    public static final VolumeUnit Centilitres       = centi(Litres);
+    public static final VolumeUnit Decilitres        = deci(Litres);
     public static final VolumeUnit CubicMetres       = new VolumeUnit(1000.0);
     public static final VolumeUnit UsTeaspoons       = new VolumeUnit(0.00492892159); 
     public static final VolumeUnit UsTablespoons     = new VolumeUnit(0.0147867648); 
@@ -128,7 +128,7 @@ public final class Units {
         if (unit instanceof TemperatureUnit && !unit.getClass().equals(TemperatureUnit.class)) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) new AbstractUnit<Q>(Objects.requireNonNull(unit).convertToBase(0.000000001), unit.constructor) {};
+        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(0.000000001));
     }
 
     @SuppressWarnings("unchecked")
@@ -136,7 +136,7 @@ public final class Units {
         if (unit instanceof TemperatureUnit && !unit.getClass().equals(TemperatureUnit.class)) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) new AbstractUnit<Q>(Objects.requireNonNull(unit).convertToBase(0.000001), unit.constructor) {};
+        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(0.000001));
     }
 
     @SuppressWarnings("unchecked")
@@ -144,7 +144,7 @@ public final class Units {
         if (unit instanceof TemperatureUnit && !unit.getClass().equals(TemperatureUnit.class)) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) new AbstractUnit<Q>(Objects.requireNonNull(unit).convertToBase(0.001), unit.constructor) {};
+        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(0.001));
     }
 
     @SuppressWarnings("unchecked")
@@ -152,7 +152,7 @@ public final class Units {
         if (unit instanceof TemperatureUnit && !unit.getClass().equals(TemperatureUnit.class)) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) new AbstractUnit<Q>(Objects.requireNonNull(unit).convertToBase(0.01), unit.constructor) {};
+        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(0.01));
     }
 
     @SuppressWarnings("unchecked")
@@ -160,7 +160,7 @@ public final class Units {
         if (unit instanceof TemperatureUnit && !unit.getClass().equals(TemperatureUnit.class)) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) new AbstractUnit<Q>(Objects.requireNonNull(unit).convertToBase(0.1), unit.constructor) {};
+        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(0.1));
     }
 
     @SuppressWarnings("unchecked")
@@ -168,7 +168,7 @@ public final class Units {
         if (unit instanceof TemperatureUnit && !unit.getClass().equals(TemperatureUnit.class)) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) new AbstractUnit<Q>(Objects.requireNonNull(unit).convertToBase(10.0), unit.constructor) {};
+        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(10.0));
     }
 
     @SuppressWarnings("unchecked")
@@ -176,7 +176,7 @@ public final class Units {
         if (unit instanceof TemperatureUnit && !unit.getClass().equals(TemperatureUnit.class)) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) new AbstractUnit<Q>(Objects.requireNonNull(unit).convertToBase(100.0), unit.constructor) {};
+        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(100.0));
     }
 
     @SuppressWarnings("unchecked")
@@ -184,6 +184,6 @@ public final class Units {
         if (unit instanceof TemperatureUnit && !unit.getClass().equals(TemperatureUnit.class)) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) new AbstractUnit<Q>(Objects.requireNonNull(unit).convertToBase(1000.0), unit.constructor) {};
+        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(1000.0));
     }
 }

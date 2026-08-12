@@ -33,8 +33,18 @@ public abstract class AbstractUnit<Q extends AbstractMeasure<Q, ?>> {
                     denominatorUnit.constructor
                 ) {};
             }
+
+            @Override
+            protected RateUnit<Q, B> withScalar(double scalar) {
+                // Re-scale the numerator according to the new scalar base
+                double newNumeratorScalar = scalar * denominatorUnit.convertToBase(1.0);
+                AbstractUnit<Q> newNumerator = (AbstractUnit<Q>) AbstractUnit.this.withScalar(newNumeratorScalar);
+                return newNumerator.per(denominatorUnit);
+            }
         };
     }
+
+    abstract AbstractUnit<Q> withScalar(double scalar);
 
     final double convertToBase(double value) {
         return toBase.applyAsDouble(value);

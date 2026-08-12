@@ -10,5 +10,11 @@ public class AngularVelocityUnit extends RateUnit<Angle, Time>{
     public AngularVelocity of(double value) {
         return new AngularVelocity(convertToBase(value));
     }
+
+    @Override
+    protected AngularVelocityUnit withScalar(double scalar) {
+        // Create an updated DistanceUnit with the scaled ratio
+        return new AngularVelocityUnit((AngleUnit) getNumeratorUnit().withScalar(scalar * getDenominatorUnit().convertToBase(1.0)), (TimeUnit) getDenominatorUnit());
+    }
 }
     

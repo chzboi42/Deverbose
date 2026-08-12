@@ -6,5 +6,10 @@ public class TimeUnit extends AbstractUnit<Time>{
         super(scalar, Time::new);
     }
 
+    @Override
+    protected TimeUnit withScalar(double scalar) {
+        return new TimeUnit(scalar);
+    }
+
     
 }

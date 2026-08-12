@@ -10,6 +10,11 @@ public class DistanceUnit extends AbstractUnit<Distance> {
         super(scalar, Distance::new);
     }
 
+    @Override
+    protected DistanceUnit withScalar(double scalar) {
+        return new DistanceUnit(scalar);
+    }
+
     public LinearVelocityUnit per(TimeUnit time) {
         return new LinearVelocityUnit(this, time);
     }

@@ -10,6 +10,11 @@ public class AngleUnit extends AbstractUnit<Angle>{
         super(scalar, Angle::new);
     }
 
+    @Override
+    protected AngleUnit withScalar(double scalar) {
+        return new AngleUnit(scalar);
+    }
+
     public AngularVelocityUnit per(TimeUnit time) {
         return new AngularVelocityUnit(this, time);
     }
