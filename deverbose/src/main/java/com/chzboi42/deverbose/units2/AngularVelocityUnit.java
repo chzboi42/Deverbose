@@ -11,3 +11,4 @@ public class AngularVelocityUnit extends RateUnit<Angle, Time>{
         return new AngularVelocity(convertToBase(value));
     }
 }
+    

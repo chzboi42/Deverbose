@@ -6,7 +6,7 @@ public class Force extends AbstractMeasure<Force, ForceUnit> {
         super(newtons, Force::new);
     }
 
-    public Pressure dividedBy(Area unitArea) {
+    public Pressure per(Area unitArea) {
         return new Pressure(this.baseValue / unitArea.baseValue);
     }
 }
