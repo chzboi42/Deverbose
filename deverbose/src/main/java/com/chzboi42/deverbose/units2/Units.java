@@ -123,67 +123,59 @@ public final class Units {
     public static final DensityUnit PoundsPerUsGallon       = Pounds.per(UsGallons);
 
     
-    @SuppressWarnings("unchecked")
-    public static <U extends AbstractUnit<Q>, Q extends AbstractMeasure<Q, U>> U nano(U unit) {
+    public static <U extends AbstractUnit<Q, U>, Q extends AbstractMeasure<Q, U>> U nano(U unit) {
         if (unit instanceof TemperatureUnit && unit != Kelvin) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(0.000000001));
+        return (U) Objects.requireNonNull(unit).scale(0.000000001);
     }
 
-    @SuppressWarnings("unchecked")
-    public static <U extends AbstractUnit<Q>, Q extends AbstractMeasure<Q, U>> U micro(U unit) {
+    public static <U extends AbstractUnit<Q, U>, Q extends AbstractMeasure<Q, U>> U micro(U unit) {
         if (unit instanceof TemperatureUnit && unit != Kelvin) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(0.000001));
+        return (U) Objects.requireNonNull(unit).scale(0.000001);
+    }
+    
+    public static <U extends AbstractUnit<Q, U>, Q extends AbstractMeasure<Q, U>> U milli(U unit) {
+        if (unit instanceof TemperatureUnit && unit != Kelvin) {
+            throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
+        }
+        return (U) Objects.requireNonNull(unit).scale(0.001);
     }
 
-    @SuppressWarnings("unchecked")
-    public static <U extends AbstractUnit<Q>, Q extends AbstractMeasure<Q, U>> U milli(U unit) {
+    public static <U extends AbstractUnit<Q, U>, Q extends AbstractMeasure<Q, U>> U centi(U unit) {
         if (unit instanceof TemperatureUnit && unit != Kelvin) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(0.001));
+        return (U) Objects.requireNonNull(unit).scale(0.01);
     }
 
-    @SuppressWarnings("unchecked")
-    public static <U extends AbstractUnit<Q>, Q extends AbstractMeasure<Q, U>> U centi(U unit) {
+    public static <U extends AbstractUnit<Q, U>, Q extends AbstractMeasure<Q, U>> U deci(U unit) {
         if (unit instanceof TemperatureUnit && unit != Kelvin) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(0.01));
+        return (U) Objects.requireNonNull(unit).scale(0.1);
     }
 
-    @SuppressWarnings("unchecked")
-    public static <U extends AbstractUnit<Q>, Q extends AbstractMeasure<Q, U>> U deci(U unit) {
+    public static <U extends AbstractUnit<Q, U>, Q extends AbstractMeasure<Q, U>> U deca(U unit) {
         if (unit instanceof TemperatureUnit && unit != Kelvin) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(0.1));
+        return (U) Objects.requireNonNull(unit).scale(10.0);
     }
 
-    @SuppressWarnings("unchecked")
-    public static <U extends AbstractUnit<Q>, Q extends AbstractMeasure<Q, U>> U deca(U unit) {
+    public static <U extends AbstractUnit<Q, U>, Q extends AbstractMeasure<Q, U>> U hecto(U unit) {
         if (unit instanceof TemperatureUnit && unit != Kelvin) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(10.0));
+        return (U) Objects.requireNonNull(unit).scale(100.0);
     }
 
-    @SuppressWarnings("unchecked")
-    public static <U extends AbstractUnit<Q>, Q extends AbstractMeasure<Q, U>> U hecto(U unit) {
+    public static <U extends AbstractUnit<Q, U>, Q extends AbstractMeasure<Q, U>> U kilo(U unit) {
         if (unit instanceof TemperatureUnit && unit != Kelvin) {
             throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
         }
-        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(100.0));
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <U extends AbstractUnit<Q>, Q extends AbstractMeasure<Q, U>> U kilo(U unit) {
-        if (unit instanceof TemperatureUnit && unit != Kelvin) {
-            throw new IllegalArgumentException("Cannot apply metric prefixes to offset temperature units like Celsius or Fahrenheit!");
-        }
-        return (U) Objects.requireNonNull(unit).withScalar(unit.convertToBase(1000.0));
+        return (U) Objects.requireNonNull(unit).scale(1000.0);
     }
 }

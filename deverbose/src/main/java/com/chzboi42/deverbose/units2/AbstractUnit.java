@@ -1,50 +1,62 @@
 package com.chzboi42.deverbose.units2;
 
+import java.util.Objects;
 import java.util.function.DoubleFunction;
 import java.util.function.DoubleUnaryOperator;
 
-public abstract class AbstractUnit<Q extends AbstractMeasure<Q, ?>> {
+public abstract class AbstractUnit<Q extends AbstractMeasure<Q, U>, U extends AbstractUnit<Q,U>> {
 
     private final DoubleUnaryOperator toBase;
     private final DoubleUnaryOperator fromBase;
-    final DoubleFunction<Q> constructor;
+    final DoubleFunction<Q> measureConstructor;
+    final DoubleFunction<U> unitConstructor;
 
-    AbstractUnit(DoubleUnaryOperator toBase, DoubleUnaryOperator fromBase, DoubleFunction<Q> constructor) {
+    AbstractUnit(DoubleUnaryOperator toBase, DoubleUnaryOperator fromBase, DoubleFunction<Q> measureConstructor, DoubleFunction<U> unitConstructor) {
         this.toBase = toBase;
         this.fromBase = fromBase;
-        this.constructor = constructor;
+        this.measureConstructor = measureConstructor;
+        this.unitConstructor = unitConstructor;
     }
 
-    AbstractUnit(double scalar, DoubleFunction<Q> constructor) {
-        this(v -> v * scalar, base -> base / scalar, constructor);
-    }
+    AbstractUnit(double scalar, DoubleFunction<Q> measureConstructor, DoubleFunction<U> unitConstructor) {
+        this(v -> v * scalar, base -> base / scalar, measureConstructor, unitConstructor);
+    }   
 
     public Q of(double value) {
-        return constructor.apply(convertToBase(value));
+        return measureConstructor.apply(convertToBase(value));
     }
 
-    public final <B extends AbstractMeasure<B, ?>> RateUnit<Q, B> per(AbstractUnit<B> denominatorUnit) {
-        return new RateUnit<>(this, denominatorUnit, this.constructor, denominatorUnit.constructor) {
+    /**
+     * 1 of this new unit = <i>(value)</i> of the original unit.
+     * @param value how many of the original units are equal to 1 of this new unit
+     * @return the new unit complete with scalar
+     */
+    public U scale(double value) {
+        return unitConstructor.apply(convertToBase(1.0) * value);
+    }
+
+    public final <B extends AbstractMeasure<B, UB>, UB extends AbstractUnit<B, UB>> RateUnit<Q, B> per(AbstractUnit<B, UB> denominatorUnit) {
+        return new RateUnit<Q, B>(
+            this, 
+            denominatorUnit, 
+            this.measureConstructor, 
+            denominatorUnit.measureConstructor
+        ) {
             @Override
             public Rate<Q, B> of(double value) {
                 return new Rate<Q, B>(
                     convertToBase(value), 
-                    AbstractUnit.this.constructor, 
-                    denominatorUnit.constructor
+                    AbstractUnit.this.measureConstructor, 
+                    denominatorUnit.measureConstructor
                 ) {};
             }
 
             @Override
-            protected RateUnit<Q, B> withScalar(double scalar) {
-                // Re-scale the numerator according to the new scalar base
-                double newNumeratorScalar = scalar * denominatorUnit.convertToBase(1.0);
-                AbstractUnit<Q> newNumerator = (AbstractUnit<Q>) AbstractUnit.this.withScalar(newNumeratorScalar);
-                return newNumerator.per(denominatorUnit);
+            public RateUnit<Q, B> scale(double factor) {
+                return Objects.requireNonNull(AbstractUnit.this.scale(factor)).per(denominatorUnit);
             }
         };
     }
-
-    abstract AbstractUnit<Q> withScalar(double scalar);
 
     final double convertToBase(double value) {
         return toBase.applyAsDouble(value);

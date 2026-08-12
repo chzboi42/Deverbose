@@ -12,8 +12,7 @@ public class LinearVelocityUnit extends RateUnit<Distance, Time> {
     }
 
     @Override
-    protected LinearVelocityUnit withScalar(double scalar) {
-        // Create an updated DistanceUnit with the scaled ratio
-        return new LinearVelocityUnit((DistanceUnit) getNumeratorUnit().withScalar(scalar * getDenominatorUnit().convertToBase(1.0)), (TimeUnit) getDenominatorUnit());
+    public LinearVelocityUnit scale(double scalar) {
+        return new LinearVelocityUnit((DistanceUnit) getNumeratorUnit().scale(scalar), (TimeUnit) getDenominatorUnit());
     }
 }

@@ -1,14 +1,9 @@
 package com.chzboi42.deverbose.units2;
 
-public class MassUnit extends AbstractUnit<Mass> {
+public class MassUnit extends AbstractUnit<Mass, MassUnit> {
 
     MassUnit(double scalar) {
-        super(scalar, Mass::new);
-    }
-
-    @Override
-    protected MassUnit withScalar(double scalar) {
-        return new MassUnit(scalar);
+        super(scalar, Mass::new, MassUnit::new);
     }
 
     public DensityUnit per(VolumeUnit volume) {

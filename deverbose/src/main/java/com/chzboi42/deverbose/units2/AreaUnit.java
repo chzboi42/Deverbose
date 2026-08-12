@@ -1,13 +1,8 @@
 package com.chzboi42.deverbose.units2;
 
-public class AreaUnit extends AbstractUnit<Area> {
+public class AreaUnit extends AbstractUnit<Area, AreaUnit> {
 
     AreaUnit(double scalar) {
-        super(scalar, Area::new);
-    }
-
-    @Override
-    protected AreaUnit withScalar(double scalar) {
-        return new AreaUnit(scalar);
+        super(scalar, Area::new, AreaUnit::new);
     }
 }

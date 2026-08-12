@@ -3,7 +3,7 @@ package com.chzboi42.deverbose.units2;
 import java.util.Objects;
 import java.util.function.DoubleFunction;
 
-public abstract class AbstractMeasure<Q extends AbstractMeasure<Q, U>, U extends AbstractUnit<Q>> {
+public abstract class AbstractMeasure<Q extends AbstractMeasure<Q, U>, U extends AbstractUnit<Q, U>> {
 
     final double baseValue;
     private final DoubleFunction<Q> constructor;
