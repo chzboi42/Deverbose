@@ -24,7 +24,16 @@ public abstract class AbstractUnit<Q extends AbstractMeasure<Q, ?>> {
     }
 
     public final <B extends AbstractMeasure<B, ?>> RateUnit<Q, B> per(AbstractUnit<B> denominatorUnit) {
-        return new RateUnit<>(this, denominatorUnit, this.constructor, denominatorUnit.constructor) {};
+        return new RateUnit<>(this, denominatorUnit, this.constructor, denominatorUnit.constructor) {
+            @Override
+            public Rate<Q, B> of(double value) {
+                return new Rate<Q, B>(
+                    convertToBase(value), 
+                    AbstractUnit.this.constructor, 
+                    denominatorUnit.constructor
+                ) {};
+            }
+        };
     }
 
     final double convertToBase(double value) {

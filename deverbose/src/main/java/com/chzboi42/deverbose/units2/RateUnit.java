@@ -25,6 +25,10 @@ public abstract class RateUnit<
         this.denominatorUnit = denominatorUnit;
     }
 
+    @Override
+    public abstract Rate<A, B> of(double value);
+
     public AbstractUnit<A> getNumeratorUnit() { return numeratorUnit; }
+    
     public AbstractUnit<B> getDenominatorUnit() { return denominatorUnit; }
 }
