@@ -107,6 +107,7 @@ public final class Units {
     public static final LinearVelocityUnit KPH = Kilometres.per(Hours);
     public static final LinearVelocityUnit MPH = Miles.per(Hours);
     public static final LinearVelocityUnit Knots = NauticalMiles.per(Hours);
+    public static final LinearVelocityUnit Mach = MPS.scale(343);
 
     public static final AngularVelocityUnit RadPerSec = Radians.per(Seconds);
     public static final AngularVelocityUnit RPM  = Rotations.per(Minutes);
