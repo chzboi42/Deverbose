@@ -1,9 +1,9 @@
 package com.chzboi42.deverbose.units2;
 
-public class LinearVelocityUnit extends RateUnit<Distance, Time> {
+public class LinearVelocityUnit extends AbstractRateUnit<Distance, Time, LinearVelocity> {
 
     LinearVelocityUnit(DistanceUnit distance, TimeUnit time) {
-        super(distance, time, Distance::new, Time::new);
+        super(distance, time, LinearVelocity::new);
     } 
 
     @Override

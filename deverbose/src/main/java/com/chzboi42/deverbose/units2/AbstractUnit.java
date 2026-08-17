@@ -35,27 +35,14 @@ public abstract class AbstractUnit<Q extends AbstractMeasure<Q, U>, U extends Ab
         return unitConstructor.apply(convertToBase(1.0) * value);
     }
 
-    public final <B extends AbstractMeasure<B, UB>, UB extends AbstractUnit<B, UB>> RateUnit<Q, B> per(AbstractUnit<B, UB> denominatorUnit) {
-        return new RateUnit<Q, B>(
+    public <B extends AbstractMeasure<B, BU>, BU extends AbstractUnit<B, BU>> 
+    RateUnit<Q, B> per(BU denominatorUnit) {
+        return new RateUnit<>(
             this, 
             denominatorUnit, 
             this.measureConstructor, 
-            denominatorUnit.measureConstructor
-        ) {
-            @Override
-            public Rate<Q, B> of(double value) {
-                return new Rate<Q, B>(
-                    convertToBase(value), 
-                    AbstractUnit.this.measureConstructor, 
-                    denominatorUnit.measureConstructor
-                ) {};
-            }
-
-            @Override
-            public RateUnit<Q, B> scale(double factor) {
-                return Objects.requireNonNull(AbstractUnit.this.scale(factor)).per(denominatorUnit);
-            }
-        };
+            Objects.requireNonNull(denominatorUnit).measureConstructor
+        );
     }
 
     final double convertToBase(double value) {

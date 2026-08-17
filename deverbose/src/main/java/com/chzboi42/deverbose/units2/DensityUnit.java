@@ -1,9 +1,9 @@
 package com.chzboi42.deverbose.units2;
 
-public class DensityUnit extends RateUnit<Mass, Volume> {
+public class DensityUnit extends AbstractRateUnit<Mass, Volume, Density> {
 
     DensityUnit(MassUnit mass, VolumeUnit volume) {
-        super(mass, volume, Mass::new, Volume::new);
+        super(mass, volume, Density::new);
     }
 
     @Override
@@ -15,4 +15,4 @@ public class DensityUnit extends RateUnit<Mass, Volume> {
     public DensityUnit scale(double scalar) {
         return new DensityUnit((MassUnit) getNumeratorUnit().scale(scalar), (VolumeUnit) getDenominatorUnit());
     }
-}
+}   

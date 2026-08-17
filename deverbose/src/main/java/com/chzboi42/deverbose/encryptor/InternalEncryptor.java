@@ -1,7 +1,7 @@
 package com.chzboi42.deverbose.encryptor;
 
-import com.chzboi42.deverbose.ArrayUtil;
 import com.chzboi42.deverbose.Maths;
+import com.chzboi42.deverbose.arrays.ArrayUtil;
 
 public class InternalEncryptor {
     private final char[] charKey;

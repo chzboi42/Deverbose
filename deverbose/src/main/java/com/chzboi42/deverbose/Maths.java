@@ -478,8 +478,6 @@ public final class Maths {
         return angle.tan();
     }
 
-    public static final native void e();
-
     public static final Angle asin(double sin) {
         return Radians.of(Math.asin(sin));
     }

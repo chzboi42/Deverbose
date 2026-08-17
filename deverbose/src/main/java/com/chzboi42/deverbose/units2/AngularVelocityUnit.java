@@ -1,9 +1,9 @@
 package com.chzboi42.deverbose.units2;
 
-public class AngularVelocityUnit extends RateUnit<Angle, Time>{
+public class AngularVelocityUnit extends AbstractRateUnit<Angle, Time, AngularVelocity>{
 
     AngularVelocityUnit(AngleUnit angle, TimeUnit time) {
-        super(angle, time, Angle::new, Time::new);
+        super(angle, time, AngularVelocity::new);
     }
 
     @Override

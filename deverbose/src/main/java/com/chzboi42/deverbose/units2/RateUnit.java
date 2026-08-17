@@ -2,38 +2,35 @@ package com.chzboi42.deverbose.units2;
 
 import java.util.function.DoubleFunction;
 
-public abstract class RateUnit<
-        A extends AbstractMeasure<A, ?>, 
-        B extends AbstractMeasure<B, ?>> 
-        extends AbstractUnit<Rate<A, B>, RateUnit<A, B>> {
+public class RateUnit<A extends AbstractMeasure<A, ?>, B extends AbstractMeasure<B, ?>> 
+        extends AbstractRateUnit<A, B, Rate<A, B>> {
 
-    private final AbstractUnit<A, ?> numeratorUnit;
-    private final AbstractUnit<B, ?> denominatorUnit;
+    private final DoubleFunction<A> numeratorConstructor;
+    private final DoubleFunction<B> denominatorConstructor;
 
-    RateUnit(
+    public RateUnit(
             AbstractUnit<A, ?> numeratorUnit, 
-            AbstractUnit<B, ?> denominatorUnit, 
+            AbstractUnit<B, ?> denominatorUnit,
             DoubleFunction<A> numeratorConstructor,
             DoubleFunction<B> denominatorConstructor) {
-        
-        super(
-            val -> numeratorUnit.convertToBase(val) / denominatorUnit.convertToBase(1.0),
-            baseVal -> numeratorUnit.convertFromBase(baseVal * denominatorUnit.convertToBase(1.0)),
-            baseVal -> new Rate<>(baseVal, numeratorConstructor, denominatorConstructor) {},
-            s -> null
-        );
-
-        this.numeratorUnit = numeratorUnit;
-        this.denominatorUnit = denominatorUnit;
+        super(numeratorUnit, denominatorUnit, 
+              val -> new Rate<>(val, numeratorConstructor, denominatorConstructor));
+        this.numeratorConstructor = numeratorConstructor;
+        this.denominatorConstructor = denominatorConstructor;
     }
 
     @Override
-    public abstract Rate<A, B> of(double value);
+    public Rate<A, B> of(double value) {
+        return measureConstructor.apply(convertToBase(value));
+    }
 
     @Override
-    public abstract RateUnit<A, B> scale(double value);
-
-    public AbstractUnit<A, ?> getNumeratorUnit() { return numeratorUnit; }
-
-    public AbstractUnit<B, ?> getDenominatorUnit() { return denominatorUnit; }
+    public RateUnit<A, B> scale(double value) {
+        return new RateUnit<>(
+            getNumeratorUnit().scale(value), 
+            getDenominatorUnit(), 
+            this.numeratorConstructor,
+            this.denominatorConstructor
+        );
+    }
 }
