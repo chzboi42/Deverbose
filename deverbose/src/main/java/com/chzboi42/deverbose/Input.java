@@ -17,33 +17,41 @@ public class Input {
     public static byte inputByte(String input, boolean newLine) {
         Console.print(input);
         if (newLine) {
-            Console.write("");
+            write("");
         }
-        return scanner.nextByte();
+        byte toReturn = scanner.nextByte();
+        scanner.nextLine();
+        return toReturn;
     }
 
     public static int inputInt(String input, boolean newLine) {
-        Console.print(input);
+        print(input);
         if (newLine) {
-            Console.write("");
+            write("");
         }
-        return scanner.nextInt();
+        int toReturn =  scanner.nextInt();
+        scanner.nextLine();
+        return toReturn;
     }
 
     public static long inputLong(String input, boolean newLine) {
-        Console.print(input);
+        print(input);
         if (newLine) {
-            Console.write("");
+            write("");
         }
-        return scanner.nextLong();
+        long toReturn = scanner.nextLong();
+        scanner.nextLine();
+        return toReturn;
     }
 
     public static double inputDouble(String input, boolean newLine) {
-        Console.print(input);
+        print(input);
         if (newLine) {
-            Console.write("");
+            write("");
         }
-        return scanner.nextDouble();
+        double toReturn = scanner.nextDouble();
+        scanner.nextLine();
+        return toReturn;
     }
 
     public static float inputFloat(String input, boolean newLine) {
@@ -51,17 +59,20 @@ public class Input {
         if (newLine) {
             Console.write("");
         }
-        return scanner.nextFloat();
+        float toReturn = scanner.nextFloat();
+        scanner.nextLine();
+        return toReturn;
     }
 
     public static Object input(Object input, boolean newLine) {
-        Console.print(input);
+        print(input);
         if (newLine) {
-            Console.write("");
+            write("");
         }
-        return scanner.next();
+        String toReturn = scanner.next();
+        scanner.nextLine();
+        return toReturn;
     }
-
 
 
 }
