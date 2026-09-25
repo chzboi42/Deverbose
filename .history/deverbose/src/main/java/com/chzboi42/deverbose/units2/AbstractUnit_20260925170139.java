@@ -1,0 +1,80 @@
+package com.chzboi42.deverbose.units2;
+
+import java.util.Objects;
+import java.util.function.DoubleFunction;
+import java.util.function.DoubleUnaryOperator;
+
+public abstract class AbstractUnit<Q extends AbstractMeasure<Q, U>, U extends AbstractUnit<Q,U>> {
+
+    private final DoubleUnaryOperator toBase;
+    private final DoubleUnaryOperator fromBase;
+    final DoubleFunction<Q> measureConstructor;
+    final DoubleFunction<U> unitConstructor;
+
+    AbstractUnit(DoubleUnaryOperator toBase, DoubleUnaryOperator fromBase, DoubleFunction<Q> measureConstructor, DoubleFunction<U> unitConstructor) {
+        this.toBase = toBase;
+        this.fromBase = fromBase;
+        this.measureConstructor = measureConstructor;
+        this.unitConstructor = unitConstructor;
+    }
+
+    AbstractUnit(double scalar, DoubleFunction<Q> measureConstructor, DoubleFunction<U> unitConstructor) {
+        this(v -> v * scalar, base -> base / scalar, measureConstructor, unitConstructor);
+    }   
+
+    public Q of(double value) {
+        return measureConstructor.apply(convertToBase(value));
+    }
+
+    /**
+     * 1 of this new unit = <i>(value)</i> of the original unit.
+     * @param value how many of the original units are equal to 1 of this new unit
+     * @return the new unit complete with scalar
+     */
+    public U scale(double value) {
+        return unitConstructor.apply(convertToBase(1.0) * value);
+    }
+
+    public <B extends AbstractMeasure<B, BU>, BU extends AbstractUnit<B, BU>> 
+    RateUnit<Q, B> per(BU denominatorUnit) {
+        return new RateUnit<>(
+            this, 
+            denominatorUnit, 
+            this.measureConstructor, 
+            Objects.requireNonNull(denominatorUnit).measureConstructor
+        );
+    }
+
+    @ArchTest
+public static final ArchRule no_abstract_rate_variables = fields()
+    .that().haveRawType(AbstractRate.class)
+    .should().bePrivate() // or forbid field declarations of AbstractRate altogether
+
+    final double convertToBase(double value) {
+        return toBase.applyAsDouble(value);
+    }
+
+    final double convertFromBase(double baseValue) {
+        return fromBase.applyAsDouble(baseValue);
+    }
+
+    public final Q zero() {
+        return of(0);
+    }
+
+    public final Q half() {
+        return of(0.5);
+    }
+
+    public final Q one() {
+        return of(1);
+    }
+
+    public final Q two() {
+        return of(2);
+    }
+
+    public final Q infinite() {
+        return of(Double.POSITIVE_INFINITY);
+    }
+}

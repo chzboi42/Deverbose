@@ -69,10 +69,11 @@ public class Element {
         xomElement.setLocalName(name);
     }
 
-    public void appendChild(Element... el) {
+    public Element appendChild(Element... el) {
         for (Element e : el) {
             xomElement.appendChild(e.xomElement);
         }
+        return this;
     }
 
     public void removeChild(Element el) {

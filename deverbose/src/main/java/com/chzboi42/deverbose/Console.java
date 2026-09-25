@@ -5,7 +5,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BooleanSupplier;
 
-import com.chzboi42.deverbose.units.Time;
+import com.chzboi42.deverbose.units2.Time;
+import static com.chzboi42.deverbose.units2.Units.Nanoseconds;
+import static com.chzboi42.deverbose.units2.Units.Milliseconds;
+
 
 /**
  * Class for printing to console, Lists, and String modification
@@ -96,10 +99,10 @@ public class Console {
 
     public static void wait(Time time) {
         try {
-            if (time.inNanoSeconds() < 999999) {
-                Thread.sleep(0, (int) time.inNanoSeconds());
+            if (time.in(Nanoseconds) < 999999) {
+                Thread.sleep(0, (int) time.in(Nanoseconds));
             } else {
-                Thread.sleep((long) time.inMilliseconds());
+                Thread.sleep((long) time.in(Milliseconds));
             }
         } catch (InterruptedException e) {}
     }
