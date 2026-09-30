@@ -51,8 +51,8 @@ public class Console {
 
     public static String reverse(String x) {
         StringBuilder sb = new StringBuilder();
-        Loops.loop(x.length()-1, -1, -1, () -> 
-                    sb.append(x.charAt(Loops.i()))
+        Loops.loop(x.length()-1, -1, -1, ctx -> 
+                    sb.append(x.charAt(ctx.iteratorAsInt()))
         );
         return sb.toString();
     }

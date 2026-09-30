@@ -65,7 +65,6 @@ public class ArrayUtil {
         int[] repeated = new int[original.length * times];
 
         for (int i = 0; i < times; i++) {
-            // Copy the original array into the new one at the correct offset
             System.arraycopy(original, 0, repeated, i * original.length, original.length);
         }
         return repeated;
@@ -79,5 +78,84 @@ public class ArrayUtil {
         return list.toArray(Arrays.copyOf(arr, list.size()));
     }
 
+    public static Double[] box(double[] array) {
+        Double[] result = new Double[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+
+    public static Integer[] box(int[] array) {
+        Integer[] result = new Integer[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+
+    public static Long[] box(long[] array) {
+        Long[] result = new Long[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+
+    public static Character[] box(char[] array) {
+        Character[] result = new Character[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+
+    public static Boolean[] box(boolean[] array) {
+        Boolean[] result = new Boolean[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+
+    public static double[] unbox(Double[] array) {
+        double[] result = new double[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+
+    public static int[] unbox(Integer[] array) {
+        int[] result = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+
+    public static long[] unbox(Long[] array) {
+        long[] result = new long[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+
+    public static char[] unbox(Character[] array) {
+        char[] result = new char[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+
+    public static boolean[] unbox(Boolean[] array) {
+        boolean[] result = new boolean[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
 
 }
