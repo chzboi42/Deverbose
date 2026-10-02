@@ -45,6 +45,10 @@ public class Console {
         System.out.println("");
     }
 
+    public static void printErr(Object x) {
+        println("\u001B[31m + " + x + "\u001B[0m");
+    }
+
     public static void printf(String format, Object... args) {
         System.out.printf(format, args);
     }
